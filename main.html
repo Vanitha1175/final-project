@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Selection</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('https://www.sietk.org/images/1.png') no-repeat center center fixed;
+      background-size: cover;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items:center;
+      width: 100%;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .login-card {
+      margin: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      align-items: center;
+      width: 300px;
+      background: linear-gradient(45deg, #45454576, #ff836e);
+      transition: transform 0.3s ease;
+    }
+    .login-card:hover {
+      transform: translateY(-5px);
+    }
+    .login-card .card-content {
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007bff;
+      color: #ffffff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <br>
+    <br>
+    <br>
+    <h1>Siddartha Institute Of Science And Technology <br>Bonafide Request Portal</h1>
+    <div>
+      <button class="btn" onclick="location.href='student_login.html'">Student</button>
+      <button class="btn" onclick="location.href='staff_login.html'">Staff</button>
+      <button class="btn" onclick="location.href='principal_login.html'">Principal</button>
+    </div>
+    
+  </nav>
+</body>
+</html>

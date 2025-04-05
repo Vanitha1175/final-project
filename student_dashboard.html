@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Details</title>
+
+<link rel="stylesheet" type="text/css" href="student.css">
+</head>
+<body>
+<div class="navbar">
+    <div class="Navcontainer">
+        <span class="logo"></span>
+        <button id="logoutButton" onclick="logout()">Logout</button>
+    </div>
+</div>
+<div class="container">
+    <div class="student-details-box">
+        <h2>Student Details</h2>
+        <div class="input-container">
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Enter your name">
+            <p id="nameError" class="error-message"></p>
+        </div>
+        <div class="input-container">
+            <label for="rollNumber">Roll Number:</label>
+            <input type="text" id="rollNumber" placeholder="Enter your roll number">
+            <p id="rollNumberError" class="error-message"></p>
+        </div>
+        <div class="input-container">
+            <label for="email">Email:</label>
+            <input type="text" id="email" placeholder="Enter your mail id">
+            <p id="emailError" class="error-message"></p>
+        </div>
+        <div class="input-container">
+            <label for="year">Year:</label>
+            <input type="text" id="year" placeholder="Enter your year">
+            <p id="yearError" class="error-message"></p>
+        </div>
+        <div class="input-container">
+            <label for="branch">Branch:</label>
+            <input type="text" id="branch" placeholder="Enter your branch">
+            <p id="branchError" class="error-message"></p>
+        </div>
+        <input type="hidden" id="authenticatedUser" value="">
+        <div id="dropdown" class="dropdown">
+            <button class="dropbtn">Select Bonafide type</button>
+            <div class="dropdown-content">
+                <a href="#" id="passport">Passport</a>
+                <a href="#" id="educationLoan">Education Loan</a>
+                <a href="#" id="higherStudies">Higher Studies</a>
+                <a href="#" id="mediumInstruction">Medium of Instruction</a>
+            </div>
+        </div>
+        <button id="submitDetails" onclick="validateForm(auth)">Submit Details</button>
+        <p id="submissionMessage" style="display: none;">Request submitted</p>
+    </div>
+    <div class="table-container">
+        <table id="submissionDetailsTable",align="right">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Student Roll No</th>
+              <th>Status</th>
+              <th>Download</th>
+            </tr>
+          </thead>
+          <tbody id="submissionDetailsTableBody"></tbody>
+        </table>
+    </div> <!-- Closing tag for table-container -->
+</div> 
+<script>
+    function validateForm() {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var rollNumber = document.getElementById('rollNumber').value;
+        var year = document.getElementById('year').value;
+        var branch = document.getElementById('branch').value;
+        document.getElementById('authenticatedUser').value = auth.currentUser.email;
+        var nameError = document.getElementById('nameError');
+        var emailError = document.getElementById('emailError');
+        var rollNumberError = document.getElementById('rollNumberError');
+        var yearError = document.getElementById('yearError');
+        var branchError = document.getElementById('branchError');
+
+        nameError.textContent = "";
+        emailError.textContent = "";
+        rollNumberError.textContent = "";
+        yearError.textContent = "";
+        branchError.textContent = "";
+
+        if (name === "") {
+            nameError.textContent = "Name is required";
+            return false;
+        }
+        
+        if (email === "") {
+            emailError.textContent = "Email is required";
+            return false;
+        } else if (!validateEmail(email)) {
+            emailError.textContent = "Invalid email format";
+            return false;
+        }
+
+        if (rollNumber === "") {
+            rollNumberError.textContent = "Roll number is required";
+            return false;
+        } else if (!validateRollNumber(rollNumber)) {
+            rollNumberError.textContent = "Roll number can only contain letters and numbers";
+            return false;
+        }
+
+        if (year === "") {
+            yearError.textContent = "Year is required";
+            return false;
+        } else if (!validateYear(year)) {
+            yearError.textContent = "Year must be a number";
+            return false;
+        }
+
+        if (branch === "") {
+            branchError.textContent = "Branch is required";
+            return false;
+        } else if (!validateBranch(branch)) {
+            branchError.textContent = "Branch can only contain letters";
+            return false;
+        }
+
+        // If all fields are valid, submit the form
+        submitForm();
+    }
+
+    function submitForm() {
+        console.log("Form submitted successfully");
+        // You can add code here to submit the form data using AJAX or any other method
+    }
+
+    function validateEmail(email) {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
+    function validateRollNumber(rollNumber) {
+        var re = /^[a-zA-Z0-9]+$/;
+        return re.test(rollNumber);
+    }
+
+    function validateYear(year) {
+        return !isNaN(year);
+    }
+
+    function validateBranch(branch) {
+        var re = /^[a-zA-Z]+$/;
+        return re.test(branch);
+    }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+<script  type="module" src="student_store.js"></script>
+
+</body>
+</html>

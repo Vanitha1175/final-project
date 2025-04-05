@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faculty Portal</title>
+<link rel="stylesheet" type="text/css" href="teacher.css">
+<link rel="stylesheet" type="text/css" href="request.css">
+</head>
+<body>
+<div class="navbar">
+    <div class="Navcontainer">
+        <span class="logo"></span>
+        <button id="logoutButton" onclick="logout()">Logout</button>
+    </div>
+</div>
+<div class="container">
+    <div class="student-details-box">
+        <h2>Requests window</h2>
+        <div id="dropdown" class="dropdown">     
+            <div class="dropdown-content">
+                <a href="staff_dashboard.html" id="approve">Forward</a>
+                <a href="staff_dashboard.html" id="deny">Deny</a>
+            </div>
+        </div>
+        <div id="studentDetails"></div> 
+    </div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script src="staff_portal.js"></script> 
+</body>
+</html>
